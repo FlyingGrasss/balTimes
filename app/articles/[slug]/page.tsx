@@ -118,7 +118,7 @@ export default async function ArticlePage({
   if (!article)
     return (
       <div className="max-w-4xl mx-auto px-6 pt-32 pb-20 text-center">
-        <h1 className="text-3xl font-bold mb-6">
+        <h1 className="text-3xl max-sm:text-2xl font-bold mb-6">
           Makale bulunamadı
         </h1>
         <Link
@@ -140,8 +140,8 @@ export default async function ArticlePage({
       </Link>
 
       <article>
-        <header className="mb-10">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+        <header className="mb-10 max-sm:mb-4">
+          <h1 className="text-3xl lg:text-5xl font-bold mb-6 max-sm:mb-3 leading-tight">
             {article.title}
           </h1>
           <time className="text-sm text-gray-600">

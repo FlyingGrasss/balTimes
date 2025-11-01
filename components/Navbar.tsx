@@ -1,14 +1,15 @@
 // components/Header.tsx
 
-"use client"
-
 import Link from 'next/link'
 import Image from 'next/image'
+import { headers } from 'next/headers'
 
-export default function Navbar() {
-  const isStudioPage =
-    typeof window !== 'undefined' &&
-    window.location.pathname.startsWith('/studio')
+export default async function Navbar() {
+
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || ''
+  const isStudioPage = pathname.startsWith('/studio')
+
 
   if (isStudioPage) return 
 

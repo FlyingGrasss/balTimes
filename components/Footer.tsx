@@ -1,11 +1,14 @@
 // components/Footer.tsx
 
-"use client"
+import { headers } from "next/headers"
 
-export default function Footer() {
-  const isStudioPage =
-    typeof window !== 'undefined' &&
-    window.location.pathname.startsWith('/studio')
+export default async function Footer() {
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || ''
+  const isStudioPage = pathname.startsWith('/studio')
+
+
+  if (isStudioPage) return 
 
   if (isStudioPage) return <></>  
   return (

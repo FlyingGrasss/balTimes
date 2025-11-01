@@ -14,7 +14,9 @@ const ARTICLE_QUERY = `*[_type == "article"] | order(publishedAt desc) {
 }`
 
 export default async function Home() {
-  const articles = await client.fetch(ARTICLE_QUERY)
+  const articles = await client.fetch(ARTICLE_QUERY, {}, {
+    next: { tags: ['articles'] }
+  })
 
   const featured = articles.find((a: any) => a.featured)
   const recent = articles

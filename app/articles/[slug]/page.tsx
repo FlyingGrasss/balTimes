@@ -1,15 +1,24 @@
 // app/articles/[slug]/page.tsx
 import { client, urlFor } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const ARTICLE_QUERY = `*[_type == "article" && slug.current == $slug][0] {
   _id,
   title,
-  body,
+  slug,
+  excerpt,
   image,
+  body,
   publishedAt,
-  excerpt
+  featured,
+  type,
+  author-> {
+    name,
+    image,
+    bio
+  }
 }`
 
 // Updated PortableText components with more comprehensive style handling
@@ -48,7 +57,7 @@ const portableTextComponents = {
     ),
     // Handle normal paragraph
     normal: ({ children }: any) => (
-      <p className="mb-6 text-lg leading-8 text-gray-800">
+      <p className="mb-6 text-lg max-sm:text-sm leading-8 text-gray-800">
         {children}
       </p>
     ),
@@ -123,7 +132,7 @@ export default async function ArticlePage({
         </h1>
         <Link
           href="/"
-          className="text-blue-600 hover:underline font-semibold"
+          className="text-gray-600 hover:underline font-semibold"
         >
           Ana sayfaya dön
         </Link>
@@ -134,7 +143,7 @@ export default async function ArticlePage({
     <main className="max-w-4xl mx-auto px-6 pt-12 pb-20">
       <Link
         href="/"
-        className="inline-flex items-center text-blue-600 hover:underline mb-10 font-semibold text-sm"
+        className="inline-flex items-center text-gray-600 hover:underline mb-10 max-sm:mb-4 font-semibold text-sm"
       >
         ← Geri Dön
       </Link>
@@ -157,12 +166,29 @@ export default async function ArticlePage({
         </header>
 
         {article.image && (
-          <div className="my-10">
+          <div className="my-10 max-sm:my-4">
             <img
               src={urlFor(article.image).width(1200).url()}
               alt={article.title}
               className="w-full max-h-[500px] object-cover rounded-lg"
             />
+          </div>
+        )}
+
+        {article.author && (
+          <div className="flex items-center gap-4 mt-6 mb-8">
+            {article.author.image && (
+              <Image
+                src={urlFor(article.author.image).url()}
+                width={200}
+                height={200}
+                alt={article.author.name}
+                className="w-16 h-16 rounded-full object-cover"
+              />
+            )}
+            <div>
+              <p className="font-semibold">{article.author.name}</p>
+            </div>
           </div>
         )}
 

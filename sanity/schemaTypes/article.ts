@@ -43,6 +43,18 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{ type: 'author' }],
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'type',
+      title: 'Article Type',
+      type: 'string',
+    },
+    {
       name: 'featured',
       title: 'Featured Article',
       type: 'boolean',

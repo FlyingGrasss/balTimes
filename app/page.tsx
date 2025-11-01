@@ -10,7 +10,12 @@ const ARTICLE_QUERY = `*[_type == "article"] | order(publishedAt desc) {
   excerpt,
   image,
   publishedAt,
-  featured
+  featured,
+  type,
+  author-> {
+    name,
+    image
+  }
 }`
 
 export default async function Home() {
@@ -39,9 +44,15 @@ export default async function Home() {
                   <div className="pb-8 max-sm:pb-4 border-b border-black">
                     <div className="flex max-sm:flex-col gap-4">
                       <div className="flex max-w-[300px] max-sm:max-w-full flex-col">
+                        {featured.type && (
+                          <span className="w-fit text-xs text-gray-600 bg-gray-100 font-semibold tracking-widest mb-2">
+                            {featured.type}
+                          </span>
+                        )}
                         <h2 className="text-2xl font-bold leading-tight mb-4 text-gray-900 group-hover:text-gray-500  transition">
                           {featured.title}
                         </h2>
+                        
                         <p className="text-gray-600 tracking-tight text-sm mb-4">
                           {featured.excerpt}
                         </p>
@@ -54,6 +65,11 @@ export default async function Home() {
                             day: 'numeric',
                           })}
                         </time>
+                        {featured.author && (
+                          <p className="text-sm text-gray-800 mt-2">
+                            {featured.author.name}
+                          </p>
+                        )}
                       </div>
                       {featured.image && (
                         <div className="overflow-hidden">
@@ -86,9 +102,15 @@ export default async function Home() {
                   <div className="pb-8 pt-8 max-sm:pt-4 max-sm:pb-4 border-b border-black">
                     <div className="flex max-sm:flex-col gap-4">
                       <div className="flex max-w-[300px] max-sm:max-w-full flex-col">
+                        {article.type && (
+                          <span className="w-fit text-xs text-gray-800 font-semibold mb-2 ">
+                            {article.type}
+                          </span>
+                        )}
                         <h2 className="text-2xl font-bold leading-tight mb-4 text-gray-900 group-hover:text-gray-500  transition">
                           {article.title}
                         </h2>
+                        
                         <p className="text-gray-600 tracking-tight text-sm mb-4">
                           {article.excerpt}
                         </p>
@@ -101,6 +123,11 @@ export default async function Home() {
                             day: 'numeric',
                           })}
                         </time>
+                        {article.author && (
+                          <p className="text-sm text-gray-800 font-bold mt-2">
+                            {article.author.name}
+                          </p>
+                        )}
                       </div>
                       {article.image && (
                         <div className="overflow-hidden">

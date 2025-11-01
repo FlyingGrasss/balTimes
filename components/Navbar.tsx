@@ -1,13 +1,12 @@
-// components/Header.tsx
+// components/Navbar.tsx
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { headers } from 'next/headers'
+import { usePathname } from 'next/navigation'
 
 export default async function Navbar() {
 
-  const headersList = await headers()
-  const pathname = headersList.get('x-pathname') || ''
+  const pathname = usePathname()
   const isStudioPage = pathname.startsWith('/studio')
 
 

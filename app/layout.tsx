@@ -13,7 +13,7 @@ const libreBaskerville = Libre_Baskerville({
 
 export const metadata: Metadata = {
   title: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
-  description: 'Bornova Anadolu Lisesi\'nin resmi haber platformu. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
+  description: 'BAL Times. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
   keywords: [
     'Bornova Anadolu Lisesi',
     'BAL',
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
-    description: 'Bornova Anadolu Lisesi\'nin resmi haber platformu. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
-    url: 'https://www.baltimes.com', // Güncel domain ile değiştirin
+    description: 'BAL Times. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
+    url: 'https://bal-times.vercel.app', // Güncel domain ile değiştirin
     siteName: 'BAL Times',
     images: [
       {
-        url: '/opengraph-image.jpg', // Public klasörüne ekleyeceğiniz görsel
+        url: '/icon.png', // Public klasörüne ekleyeceğiniz görsel
         width: 1200,
         height: 630,
         alt: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
     description: 'Bornova Anadolu Lisesi\'nin resmi haber platformu. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
-    images: ['/opengraph-image.jpg'], // Public klasörüne ekleyeceğiniz görsel
+    images: ['/icon.png'], // Public klasörüne ekleyeceğiniz görsel
   },
 }
 

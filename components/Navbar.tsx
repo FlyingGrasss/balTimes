@@ -23,7 +23,7 @@ export default function Navbar() {
               alt="BAL"
               width={900}
               height={40}
-              className=" "
+              className="h-16 w-auto max-sm:h-[26px]"
             />
           </Link>
       </div>

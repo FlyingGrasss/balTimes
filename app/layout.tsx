@@ -14,6 +14,7 @@ const libreBaskerville = Libre_Baskerville({
 export const metadata: Metadata = {
   title: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
   description: 'BAL Times. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
+  metadataBase: new URL('https://bal-times.vercel.app'),
   keywords: [
     'Bornova Anadolu Lisesi',
     'BAL',

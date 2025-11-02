@@ -45,7 +45,7 @@ export default async function Home() {
                     <div className="flex max-sm:flex-col gap-4">
                       <div className="flex max-w-[300px] max-sm:max-w-full flex-col">
                         {featured.type && (
-                          <span className="w-fit text-xs text-gray-600 bg-gray-100 font-semibold tracking-widest mb-2">
+                          <span className="w-fit text-xs text-gray-800 font-semibold mb-2">
                             {featured.type}
                           </span>
                         )}

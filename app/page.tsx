@@ -26,7 +26,6 @@ export default async function Home() {
   const featured = articles.find((a: any) => a.featured)
   const recent = articles
     .filter((a: any) => !a.featured)
-    .slice(0, 6)
 
   return (
     <main className="mx-20 max-sm:mx-4 pt-8 pb-20">

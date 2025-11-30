@@ -1,7 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from 'next'
 import { Libre_Baskerville } from 'next/font/google'
-import './globals.css'
+import './globals.css?inline'
 
 const libreBaskerville = Libre_Baskerville({
   subsets: ['latin'],

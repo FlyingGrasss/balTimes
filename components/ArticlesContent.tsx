@@ -6,6 +6,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '@/lib/sanity'
+import BalidLoginButton from './BalidLoginButton'
 
 interface Article {
   _id: string
@@ -64,6 +65,10 @@ export default function ArticlesContent({
             {cat}
           </button>
         ))}
+        <div className='flex w-full justify-end'>
+          <BalidLoginButton />
+        </div>
+
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">

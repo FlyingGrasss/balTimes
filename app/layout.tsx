@@ -2,8 +2,6 @@
 import type { Metadata } from 'next'
 import { Libre_Baskerville } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 
 const libreBaskerville = Libre_Baskerville({
   subsets: ['latin'],
@@ -12,9 +10,9 @@ const libreBaskerville = Libre_Baskerville({
 })
 
 export const metadata: Metadata = {
-  title: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
+  title: 'BAL Times - BAL Öğrenci Derneği Haberleri',
   description: 'BAL Times. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
-  metadataBase: new URL('https://bal-times.vercel.app'),
+  metadataBase: new URL('https://www.baltimes.org'),
   keywords: [
     'Bornova Anadolu Lisesi',
     'BAL',
@@ -30,18 +28,19 @@ export const metadata: Metadata = {
     'Lise Haberleri',
     'Eğitim',
     'Geleceğin aydınlık sesi',
+    "Bornova Anadolu Lisesi Öğrenci Derneği"
   ],
   openGraph: {
-    title: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
+    title: 'BAL Times - BAL Öğrenci Derneği Haberleri',
     description: 'BAL Times. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
-    url: 'https://bal-times.vercel.app', // Güncel domain ile değiştirin
+    url: 'https://www.baltimes.org', // Güncel domain ile değiştirin
     siteName: 'BAL Times',
     images: [
       {
         url: '/icon.png', // Public klasörüne ekleyeceğiniz görsel
         width: 1200,
         height: 630,
-        alt: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
+        alt: 'BAL Times - BAL Öğrenci Derneği Haberleri',
       },
     ],
     locale: 'tr_TR',
@@ -49,8 +48,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BAL Times - Bornova Anadolu Lisesi Haberleri',
-    description: 'Bornova Anadolu Lisesi\'nin resmi haber platformu. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
+    title: 'BAL Times - BAL Öğrenci Derneği Haberleri',
+    description: 'Bornova Anadolu Lisesi Öğrenci Derneği\'nin resmi haber platformu. Okul etkinlikleri, duyurular ve öğrenci haberleri için BAL Times\'ı takip edin.',
     images: ['/icon.png'], // Public klasörüne ekleyeceğiniz görsel
   },
 }
@@ -63,13 +62,9 @@ export default function RootLayout({
   
 
   return (
-    <html lang="tr" className={`${libreBaskerville.variable}`} >
+    <html lang="tr" className={`${libreBaskerville.variable}`}>
       <body className="bg-white">
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            {children}
-          </div>
-          <Footer />
+        {children}
       </body>
     </html>
   )

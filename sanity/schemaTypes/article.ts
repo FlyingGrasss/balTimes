@@ -1,4 +1,5 @@
 // sanity/schemaTypes/article.ts
+
 export default {
   name: 'article',
   title: 'Article',
@@ -53,6 +54,18 @@ export default {
       name: 'type',
       title: 'Article Type',
       type: 'string',
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Haber', value: 'haber' },
+          { title: 'Edebiyat', value: 'edebiyat' },
+        ],
+      },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'featured',

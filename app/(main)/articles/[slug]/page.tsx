@@ -1,4 +1,4 @@
-// app/articles/[slug]/page.tsx
+// app/(main)/articles/[slug]/page.tsx
 import { client, urlFor } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'

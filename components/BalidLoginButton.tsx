@@ -1,5 +1,3 @@
-// components/BalidLoginButton.tsx
-
 "use client";
 
 import Image from "next/image";
@@ -9,6 +7,19 @@ interface User {
   userId: string;
   email: string;
   name: string;
+}
+
+// Helper to generate PKCE values
+async function generatePKCE() {
+  const verifier = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  const encoder = new TextEncoder();
+  const data = encoder.encode(verifier);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  const challenge = btoa(String.fromCharCode(...new Uint8Array(hash)))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+  return { verifier, challenge };
 }
 
 export default function BalidLoginButton() {
@@ -29,25 +40,31 @@ export default function BalidLoginButton() {
     }
   }, []);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const clientId = process.env.NEXT_PUBLIC_BALID_CLIENT_ID;
     const redirectUri = encodeURIComponent(
       process.env.NEXT_PUBLIC_BALID_CALLBACK_URL!
     );
     const state = Math.random().toString(36).substring(7);
 
+    // Generate PKCE
+    const { verifier, challenge } = await generatePKCE();
+
+    // Store verifier in a cookie so the Server Route can read it later
+    // sessionStorage doesn't work for Server Actions/Routes
+    document.cookie = `balid_verifier=${verifier}; path=/; max-age=300; SameSite=Lax`;
     sessionStorage.setItem("baltimes_state", state);
 
+    // Points to your BAL ID API Route
     window.location.href =
-      `${process.env.NEXT_PUBLIC_BALID_AUTHORIZE_URL}?client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}`;
+      `${process.env.NEXT_PUBLIC_BALID_AUTHORIZE_URL}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&state=${state}&code_challenge=${challenge}&code_challenge_method=S256`;
   };
 
   const handleLogout = () => {
-    document.cookie =
-      "baltimes_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie =
-      "baltimes_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    document.cookie = "baltimes_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "baltimes_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setUser(null);
+    window.location.reload();
   };
 
   if (user && user.name) {

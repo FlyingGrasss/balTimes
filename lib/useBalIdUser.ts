@@ -1,10 +1,9 @@
-// lib/useBalidUser.ts
-
 import { useEffect, useState } from "react";
 
 interface User {
   userId: string;
   email: string;
+  name: string;
 }
 
 export function useBalidUser() {
@@ -12,26 +11,25 @@ export function useBalidUser() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = document.cookie
+    const userCookie = document.cookie
       .split("; ")
-      .find((row) => row.startsWith("baltimes_token="))
+      .find((row) => row.startsWith("baltimes_user="))
       ?.split("=")[1];
 
-    if (token) {
+    if (userCookie) {
       try {
-        const decoded = JSON.parse(atob(token.split(".")[1]));
+        const userData = JSON.parse(decodeURIComponent(userCookie));
         setUser({
-          userId: decoded.userId,
-          email: decoded.email,
+          userId: userData.userId,
+          email: userData.email,
+          name: userData.name,
         });
-        // Store in localStorage for client components
-        localStorage.setItem(
-          "baltimes_user",
-          JSON.stringify(decoded)
-        );
-      } catch {
+      } catch (error) {
+        console.error("Failed to parse baltimes_user cookie:", error);
         setUser(null);
       }
+    } else {
+      setUser(null);
     }
     setLoading(false);
   }, []);

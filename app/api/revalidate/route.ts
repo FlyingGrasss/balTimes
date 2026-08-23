@@ -1,4 +1,3 @@
-// app/api/revalidate/route.ts
 import { revalidateTag } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -12,8 +11,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // Revalidate all pages with articles tag
-  revalidateTag('articles', "max")
+  revalidateTag('articles')
   
   return NextResponse.json(
     { revalidated: true, now: Date.now() },

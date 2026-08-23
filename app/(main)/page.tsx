@@ -3,6 +3,8 @@
 import ArticlesContent from '@/components/ArticlesContent'
 import { client } from '@/lib/sanity'
 
+export const dynamic = 'force-static'
+
 const ARTICLE_QUERY = `*[_type == "article"] | order(publishedAt desc) {
   _id,
   title,

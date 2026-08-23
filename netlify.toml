@@ -1,13 +1,17 @@
 # netlify.toml
 
-[[edge_functions]]
-  path = "/*"
+# Force clean static handling
+[build]
+  command = "npm run build"
+  publish = ".next"
 
-# Block any IP making more than 30 requests per minute
-[[rate_limits]]
-  path = "/*"
-  limit = 30
-  window = 60
-  aggregate_by = "ip"
-  action = "block"
+# Intercept and drop known scanner paths at the Netlify CDN level
+[[redirects]]
+  from = "/*.php"
+  to = "/404"
+  status = 404
 
+[[redirects]]
+  from = "/*.env*"
+  to = "/404"
+  status = 404

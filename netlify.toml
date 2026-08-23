@@ -1,0 +1,13 @@
+# netlify.toml
+
+[[edge_functions]]
+  path = "/*"
+
+# Block any IP making more than 30 requests per minute
+[[rate_limits]]
+  path = "/*"
+  limit = 30
+  window = 60
+  aggregate_by = "ip"
+  action = "block"
+

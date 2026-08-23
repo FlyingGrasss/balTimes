@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  revalidateTag('articles')
+  revalidateTag('articles', "max")
   
   return NextResponse.json(
     { revalidated: true, now: Date.now() },
